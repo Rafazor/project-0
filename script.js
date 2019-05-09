@@ -10,27 +10,32 @@ const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 function newTodo() {
-    const checkBox = document.createElement('input');
-    const label = document.createElement('label');
-    const todoContainer = document.createElement('div');
+    let todo = prompt("Add a ToDo...");
 
-    checkBox.type = 'checkbox';
-    checkBox.value = 'new ToDo';
-    checkBox.classList.add(classNames.TODO_CHECKBOX);
-    checkBox.addEventListener("click", uncheckCount);
+    if (todo != null && todo !== '') {
+        const checkBox = document.createElement('input');
+        const label = document.createElement('label');
+        const todoContainer = document.createElement('div');
 
-    todoContainer.appendChild(checkBox);
-    todoContainer.appendChild(label);
-    todoContainer.classList.add(classNames.TODO_ITEM);
+        checkBox.type = 'checkbox';
+        checkBox.value = todo;
+        checkBox.classList.add(classNames.TODO_CHECKBOX);
+        checkBox.addEventListener("click", uncheckCount);
 
-    label.appendChild(document.createTextNode('New ToDo'));
-    label.classList.add(classNames.TODO_TEXT);
+        todoContainer.appendChild(checkBox);
+        todoContainer.appendChild(label);
+        todoContainer.classList.add(classNames.TODO_ITEM);
 
-    list.appendChild(todoContainer);
+        label.appendChild(document.createTextNode(todo));
+        label.classList.add(classNames.TODO_TEXT);
 
-    itemCountSpan.innerHTML = Number(itemCountSpan.innerHTML) + 1;
-    uncheckedCountSpan.innerHTML = Number(uncheckedCountSpan.innerHTML) + 1;
+        list.appendChild(todoContainer);
+
+        itemCountSpan.innerHTML = Number(itemCountSpan.innerHTML) + 1;
+        uncheckedCountSpan.innerHTML = Number(uncheckedCountSpan.innerHTML) + 1;
+    }
 }
+
 
 function uncheckCount(e) {
     if (e.target.checked === true) {
